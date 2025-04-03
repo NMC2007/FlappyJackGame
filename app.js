@@ -35,7 +35,7 @@ var firefly = {
 
     velocity: 0, // Vận tốc rơi
     gravity: 0.5, // trọng lực (sẽ được tăng dần và gán ngược cho velocity tạo hiệu ứng kéo xuống)
-    lift: -9, // Lực nhảy lên (phải lớn hơn tốc độ rơi tối đa và trừ thẳng vào velocity để tạo hiệu ứng bay lên)
+    lift: -7.5, // Lực nhảy lên (phải lớn hơn tốc độ rơi tối đa và trừ thẳng vào velocity để tạo hiệu ứng bay lên)
     maxVelocity: 6 // Giới hạn tốc độ rơi tối đa (velocity không được vượt quá giới hạn này)
 }
 
