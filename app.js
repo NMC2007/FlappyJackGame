@@ -30,7 +30,7 @@ var KhoangCachTrenDuoi
 
 // đóm với toạ độ trục x y
 var firefly = {
-    x: MainBGR.width/3 + 10,
+    x: MainBGR.width/2,
     y:MainBGR.height/2,
 
     velocity: 0, // Vận tốc rơi
@@ -178,7 +178,7 @@ function restartGame() {
     playAgain.style.display = 'none'; // ẩn playAgain
     socre = 0; // reset điểm số
     scoreShow1.innerText = `${0}` // hiển thị lại điểm lên màn hình
-    firefly.y = MainBGR.height / 3 + 10; // reset toạ độ đóm
+    firefly.y = MainBGR.height/2; // reset toạ độ đóm
     firefly.velocity = 0; // reset vận tốc
     Tube = [{ x: canvas.width, y: 0 }]; // reset danh sách ống
     playAudio(true) // bật lại nhạc
