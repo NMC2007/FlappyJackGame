@@ -47,9 +47,12 @@ Tube[0] = {
     y:0 // ống đầu tiên nằm ngoài cùng bên phải tương đương y = 0
 }
 
+
 // khởi tạo trước ảnh và đóm trước khi bắt đầu game
-ctx.drawImage(MainBGR, 0, 0, 490,660)
-ctx.drawImage(fireflyimg, firefly.x, firefly.y, 60, 65)
+function render() {
+    ctx.drawImage(MainBGR, 0, 0, 490,660)
+    ctx.drawImage(fireflyimg, firefly.x, firefly.y, 60, 65)
+}
 
 // bắt đầu game khi
 startGame.addEventListener('touchstart', function () {
@@ -184,6 +187,10 @@ function restartGame() {
     playAudio(true) // bật lại nhạc
     run(); // chạy lại game
 }
+
+
+// render
+render()
 
 
 // bay
