@@ -30,7 +30,7 @@ var KhoangCachTrenDuoi
 
 // đóm với toạ độ trục x y
 var firefly = {
-    x: MainBGR.width/4,
+    x: MainBGR.width/3,
     y:MainBGR.height/2,
 
     velocity: 0, // Vận tốc rơi
@@ -49,7 +49,7 @@ Tube[0] = {
 
 // khởi tạo trước ảnh và đóm trước khi bắt đầu game
 ctx.drawImage(MainBGR, 0, 0, 490,660)
-ctx.drawImage(fireflyimg, firefly.x, firefly.y, 65, 70)
+ctx.drawImage(fireflyimg, firefly.x, firefly.y, 60, 65)
 
 // bắt đầu game khi
 startGame.addEventListener('touchstart', function () {
@@ -69,7 +69,7 @@ function run() {
 
     // tải ảnh lên mỗi lần thay đổi toạ độ các phần tử
     ctx.drawImage(MainBGR, 0, 0, 490,660)
-    ctx.drawImage(fireflyimg, firefly.x, firefly.y, 65, 70)
+    ctx.drawImage(fireflyimg, firefly.x, firefly.y, 60, 65)
 
 
     for (var i = 0; i < Tube.length; i++) {
@@ -143,7 +143,7 @@ function playAudio(bool) {
 // kiểm tra chết
 function checkGameOver() {
     // 1. rơi xuống đất
-    if (firefly.y + 70 >= canvas.height) {
+    if (firefly.y + 65 >= canvas.height) {
         return true;
     }
 
@@ -154,8 +154,8 @@ function checkGameOver() {
 
         // va vào ống trên hoặc ống dưới
         if (
-            firefly.x + 65 >= tubeX && firefly.x <= tubeX + 75 &&
-            (firefly.y <= tubeY + 320 || firefly.y + 70 >= tubeY + KhoangCachHaiOng)
+            firefly.x + 60 >= tubeX && firefly.x <= tubeX + 75 &&
+            (firefly.y <= tubeY + 320 || firefly.y + 65 >= tubeY + KhoangCachHaiOng)
         ) {
             return true;
         }
