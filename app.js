@@ -22,7 +22,7 @@ let loadedImages = 0
 let totalImages = 4
 
 // gán ảnh cho từng thành phần
-fireflyimg.src = "https://i.postimg.cc/FsLSGws1/Flappy-Jack.png"
+fireflyimg.src = "https://i.postimg.cc/zX3ZLqh2/Flappy-Jack.png"
 MainBGR.src = "https://i.postimg.cc/QMSLwXJb/pngtree-painted-jungle-firefly-background-design-image-952900.jpg"
 underTube.src = "https://i.postimg.cc/hPsJ4MQM/Tube-Under.png"
 upperTube.src = "https://i.postimg.cc/bNyJ5bVn/Tube-Upper.png"
@@ -85,7 +85,7 @@ Tube[0] = {
 // khởi tạo trước ảnh và đóm trước khi bắt đầu game
 function render() {
     ctx.drawImage(MainBGR, 0, 0, 490,660)
-    ctx.drawImage(fireflyimg, firefly.x, firefly.y, 60, 65)
+    ctx.drawImage(fireflyimg, firefly.x, firefly.y, 75, 80)
 }
 
 // nếu ảnh tải xong
@@ -107,7 +107,7 @@ function run() {
 
     // tải ảnh lên mỗi lần thay đổi toạ độ các phần tử
     ctx.drawImage(MainBGR, 0, 0, 490,660)
-    ctx.drawImage(fireflyimg, firefly.x, firefly.y, 60, 65)
+    ctx.drawImage(fireflyimg, firefly.x, firefly.y, 75, 80)
 
 
     for (var i = 0; i < Tube.length; i++) {
@@ -181,7 +181,7 @@ function playAudio(bool) {
 // kiểm tra chết
 function checkGameOver() {
     // 1. rơi xuống đất
-    if (firefly.y + 65 >= canvas.height) {
+    if (firefly.y + 80 >= canvas.height) {
         return true;
     }
 
@@ -192,8 +192,8 @@ function checkGameOver() {
 
         // va vào ống trên hoặc ống dưới
         if (
-            firefly.x + 60 >= tubeX && firefly.x <= tubeX + 75 &&
-            (firefly.y <= tubeY + 320 || firefly.y + 65 >= tubeY + KhoangCachHaiOng)
+            firefly.x + 75 >= tubeX && firefly.x <= tubeX + 75 &&
+            (firefly.y <= tubeY + 320 || firefly.y + 80 >= tubeY + KhoangCachHaiOng)
         ) {
             return true;
         }
