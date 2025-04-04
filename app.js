@@ -16,6 +16,11 @@ var fireflyimg = new Image()
 var MainBGR = new Image()
 var upperTube = new Image()
 var underTube = new Image()
+
+// tổng số ảnh và bộ đếm số ảnh đã load xong
+let loadedImages = 0
+let totalImages = 4
+
 // gán ảnh cho từng thành phần
 fireflyimg.src = "https://i.postimg.cc/FsLSGws1/Flappy-Jack.png"
 MainBGR.src = "https://i.postimg.cc/QMSLwXJb/pngtree-painted-jungle-firefly-background-design-image-952900.jpg"
@@ -23,36 +28,13 @@ underTube.src = "https://i.postimg.cc/hPsJ4MQM/Tube-Under.png"
 upperTube.src = "https://i.postimg.cc/bNyJ5bVn/Tube-Upper.png"
 
 
-
-var socre = 0
-var KhoangCachHaiOng = 560
-var KhoangCachTrenDuoi
-
-// đóm với toạ độ trục x y
-var firefly = {
-    x: MainBGR.width/2,
-    y:MainBGR.height/2,
-
-    velocity: 0, // Vận tốc rơi
-    gravity: 0.5, // trọng lực (sẽ được tăng dần và gán ngược cho velocity tạo hiệu ứng kéo xuống)
-    lift: -7.5, // Lực nhảy lên (phải lớn hơn tốc độ rơi tối đa và trừ thẳng vào velocity để tạo hiệu ứng bay lên)
-    maxVelocity: 6 // Giới hạn tốc độ rơi tối đa (velocity không được vượt quá giới hạn này)
-}
-
-// mảng các ống di chuyển
-var Tube = []
-// ống đầu tiên
-Tube[0] = {
-    x:canvas.width,
-    y:0 // ống đầu tiên nằm ngoài cùng bên phải tương đương y = 0
-}
+// kiểm tra ảnh đã load xong chưa
+fireflyimg.onload = checkAllImagesLoaded
+MainBGR.onload = checkAllImagesLoaded
+upperTube.onload = checkAllImagesLoaded
+underTube.onload = checkAllImagesLoaded
 
 
-// khởi tạo trước ảnh và đóm trước khi bắt đầu game
-function render() {
-    ctx.drawImage(MainBGR, 0, 0, 490,660)
-    ctx.drawImage(fireflyimg, firefly.x, firefly.y, 60, 65)
-}
 
 // bắt đầu game khi
 startGame.addEventListener('touchstart', function () {
@@ -65,6 +47,59 @@ startGame.addEventListener('click', function () {
     playAudio(true)
     run()
 })
+
+
+var socre = 0
+var KhoangCachHaiOng = 560
+var KhoangCachTrenDuoi
+
+// đóm với toạ độ trục x y
+var firefly = {
+    x: 0,
+    y: 0,
+
+    velocity: 0, // Vận tốc rơi
+    gravity: 0.5, // trọng lực (sẽ được tăng dần và gán ngược cho velocity tạo hiệu ứng kéo xuống)
+    lift: -7.5, // Lực nhảy lên (phải lớn hơn tốc độ rơi tối đa và trừ thẳng vào velocity để tạo hiệu ứng bay lên)
+    maxVelocity: 6 // Giới hạn tốc độ rơi tối đa (velocity không được vượt quá giới hạn này)
+}
+
+// toạ độ bắt đầu game của đóm
+function initFirefly() {
+    firefly.x = MainBGR.width / 2
+    firefly.y = MainBGR.height / 2
+    firefly.velocity = 0
+}
+
+
+
+// mảng các ống di chuyển
+var Tube = []
+// ống đầu tiên
+Tube[0] = {
+    x:canvas.width,
+    y:0
+}
+
+
+// khởi tạo trước ảnh và đóm trước khi bắt đầu game
+function render() {
+    ctx.drawImage(MainBGR, 0, 0, 490,660)
+    ctx.drawImage(fireflyimg, firefly.x, firefly.y, 60, 65)
+}
+
+// nếu ảnh tải xong
+function checkAllImagesLoaded() {
+    loadedImages++;
+    if (loadedImages === totalImages) {
+
+        // khợi tạo toạ độ cho đóm trước khi gọi render
+        initFirefly()
+
+        // tất cả ảnh đã load xong render lên canvas
+        render();
+    }
+}
 
 
 // fun khởi chạy game
@@ -179,18 +214,19 @@ playAgain.addEventListener("click", restartGame);
 playAgain.addEventListener("touchstart", restartGame);
 function restartGame() {
     playAgain.style.display = 'none'; // ẩn playAgain
+
     socre = 0; // reset điểm số
+
     scoreShow1.innerText = `${0}` // hiển thị lại điểm lên màn hình
-    firefly.y = MainBGR.height/2; // reset toạ độ đóm
-    firefly.velocity = 0; // reset vận tốc
+
+    initFirefly() // reset lại toạ độ và vận tốc của đóm
+
     Tube = [{ x: canvas.width, y: 0 }]; // reset danh sách ống
+
     playAudio(true) // bật lại nhạc
+
     run(); // chạy lại game
 }
-
-
-// render
-render()
 
 
 // bay
