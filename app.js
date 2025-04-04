@@ -85,7 +85,7 @@ Tube[0] = {
 // khởi tạo trước ảnh và đóm trước khi bắt đầu game
 function render() {
     ctx.drawImage(MainBGR, 0, 0, 490,660)
-    ctx.drawImage(fireflyimg, firefly.x, firefly.y, 60, 65)
+    ctx.drawImage(fireflyimg, firefly.x, firefly.y, 72, 80)
 }
 
 // nếu ảnh tải xong
@@ -107,7 +107,7 @@ function run() {
 
     // tải ảnh lên mỗi lần thay đổi toạ độ các phần tử
     ctx.drawImage(MainBGR, 0, 0, 490,660)
-    ctx.drawImage(fireflyimg, firefly.x, firefly.y, 75, 75)
+    ctx.drawImage(fireflyimg, firefly.x, firefly.y, 72, 80)
 
 
     for (var i = 0; i < Tube.length; i++) {
@@ -181,7 +181,7 @@ function playAudio(bool) {
 // kiểm tra chết
 function checkGameOver() {
     // 1. rơi xuống đất
-    if (firefly.y + 75 >= canvas.height) {
+    if (firefly.y + 80 >= canvas.height) {
         return true;
     }
 
@@ -192,8 +192,8 @@ function checkGameOver() {
 
         // va vào ống trên hoặc ống dưới
         if (
-            firefly.x + 70 >= tubeX && firefly.x <= tubeX + 75 &&
-            (firefly.y <= tubeY + 320 || firefly.y + 75 >= tubeY + KhoangCachHaiOng)
+            firefly.x + 72 >= tubeX && firefly.x <= tubeX + 75 &&
+            (firefly.y <= tubeY + 320 || firefly.y + 80 >= tubeY + KhoangCachHaiOng)
         ) {
             return true;
         }
